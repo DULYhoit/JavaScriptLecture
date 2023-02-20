@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <!-- UI 만드는 Step -->
+    <!--
+        1.HTML/CSS로 미리디자인 (필요하면 숨김)
+        2.필요할 때 보여달라고 코드짬 (자바스크립트로)
+     -->
+    <div class="alert-box" id="alert">
+      <p class="alert-title">알림창임</p>
+      <button id="close">닫기</button>
+    </div>
+    <button onclick="alert_box('알림창임','block')">열기</button>
+    <button onclick="alert_box('아이디창임','block')">아이디</button>
+    <button onclick="alert_box('비밀번호창임','block')">비밀번호</button>
+    <script>
+      //두개를 한줄로 만드는 법:매개변수 이용
+      //    function alert_on(text) {
+      //     document.getElementById('alert').style.display = text;
+      //    };
+      //    function alert_off(text) {
+      //     document.getElementById('alert').style.display = text;
+      //    }
+
+      //onclick 이벤트대신 addEventListener('이벤트명',함수구현)를통해서 함수화가능
+      document.getElementById("close").addEventListener("click", function () {
+        alert_box("", "none");
+      });
+
+      function alert_box(title, display) {
+        document.getElementById("alert").style.display = display;
+        document.getElementsByClassName("alert-title")[0].innerHTML = title;
+      }
+    </script>
+  </body>
+</html>
