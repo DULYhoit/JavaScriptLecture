@@ -1,40 +1,67 @@
-.alert-box{
-    background-color: skyblue;
-    padding: 20px;
-    color: white;
-    border-radius: 5px;
-    display: none;
+.alert-box {
+  background-color: skyblue;
+  padding: 20px;
+  color: white;
+  border-radius: 5px;
+  display: none;
 }
 
-.list-group{
-    display: none;
+.list-group {
+  display: none;
 }
-.show{
-    display: block;
+.show {
+  display: block;
 }
 .main-bg {
-    padding: 100px 20px;
-    background: lightgrey;
+  padding: 100px 20px;
+  background: lightgrey;
 }
-
-.black-bg {
-    width : 100%;
-    height : 100%;
-    position : fixed;
-    background : rgba(0,0,0,0.5);
-    z-index : 5;
-    padding: 30px;
-    visibility: hidden;
-    opacity: 0;
+.navbar{
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+ 
+}
+  .navbar-brand{
+    font-size: 30px;
     transition: all 1s;
   }
-    .show-modal{
-       visibility: visible;
-       opacity: 1;
-    }
-  .white-bg {
-    background: white;
-    border-radius: 5px;
-    padding: 30px;
-  } 
-  
+
+.black-bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  padding: 30px;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 1s;
+}
+.show-modal {
+  visibility: visible;
+  opacity: 1;
+}
+.white-bg {
+  background: white;
+  border-radius: 5px;
+  padding: 30px;
+}
+.dark {
+  background: black;
+  color: white;
+}
+.slide-container {
+  width: 300vw;
+  /* 성능상으로 transform이 좋음 */
+  /* transform: translateX(-200vw); */
+  transition: all 1s;
+}
+.slide-box {
+  width: 100vw;
+  float: left;
+
+}
+.slide-box img {
+  width: 100%;
+}

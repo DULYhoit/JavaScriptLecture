@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="main.css" />
+    <!-- jquery 사용 -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Hello, world!</title>
+  </head>
+  <body class="dark">
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <span class="navbar-brand">JSShop</span>
+        <span class="badge bg-dark">Dark 🔄</span>
+        <button class="navbar-toggler" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+    <ul class="list-group">
+      <li class="list-group-item">An item</li>
+      <li class="list-group-item">A second item</li>
+      <li class="list-group-item">A third item</li>
+      <li class="list-group-item">A fourth item</li>
+      <li class="list-group-item">And a fifth one</li>
+    </ul>
+
+    <div class="main-bg">
+      <h4>Shirtsa on Sale</h4>
+      <button id="login" class="btn btn-danger">로그인</button>
+    </div>
+
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+        <form action="success.html" id="frm">
+          <div class="my-3">
+            <input
+              id="input-id"
+              type="text"
+              class="form-control"
+              placeholder="아이디"
+              value=""
+            />
+          </div>
+          <div class="my-3">
+            <input
+              id="input-pwd"
+              type="password"
+              class="form-control"
+              placeholder="비밀번호"
+              value=""
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">전송</button>
+          <button type="button" class="btn btn-danger" id="close">닫기</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="alert alert-danger">5초 이내 구매시 사은품 증정!"</div>
+
+    <div style="overflow: hidden">
+      <div class="slide-container">
+        <div class="slide-box">
+          <img src="img/car1.png" />
+        </div>
+        <div class="slide-box">
+          <img src="img/car2.png" />
+        </div>
+        <div class="slide-box">
+          <img src="img/car3.png" />
+        </div>
+      </div>
+    </div>
+    <div class="slide-btn-container">
+      <button class="slide-prev">이전</button>
+      <button class="slide-1">1</button>
+      <button class="slide-2">2</button>
+      <button class="slide-3">3</button>
+      <button class="slide-next">다음</button>
+    </div>
+    <div style="height: 1000px"></div>
+    <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas voluptatum minus praesentium fugit debitis at, laborum ipsa itaque placeat sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur praesentium exercitationem.
+    </div> 
+
+    <script>
+      //새로운선택자
+      //querySelector('');
+      //querySelectorAll(''); 배열로들어옴
+      //자바스크립트는 같은 식별자가 여러개있을경우 첫번째만 요소만 가져와줌
+      //jquery는 모든요소 가져와줌
+
+      // document.getElementsByClassName('navbar-toggler')[0].addEventListener('click',function() {
+
+      //     document.getElementsByClassName('list-group')[0].classList.toggle('show');
+      // })
+
+      document
+        .querySelector(".navbar-toggler")
+        .addEventListener("click", function () {
+          document.querySelector(".list-group").classList.toggle("show");
+        });
+
+      $("#login").on("click", function () {
+        //Jquery의 fadeIn같은 애니메이션 함수를 써도되지만 부담이 많이감 따라서 css처리가 바람직함
+        $(".black-bg").addClass("show-modal");
+      });
+
+      $("#close").on("click", function () {
+        $(".black-bg").removeClass("show-modal");
+      });
+      //자바스크립트
+      // document.querySelector('#modal-btn').addEventListener('click',function(){
+      //     document.getElementsByClassName('black-bg')[0].classList.add('show-modal')
+      // })
+
+      //애니메이션 만드는 법칙
+      //one-way : 1.시작스타일 2.최종스타일 3.이벤트위치 코드 4.transition 추가
+
+      //아이디가 공백이면 alert띄우기(숙제)
+      //includes() 단어가 포함되어있는지 , /정규식/.test()
+      $("#frm").on("submit", function (event) {
+        const idval = $("#input-id").val();
+        const pwdval = $("#input-pwd").val();
+
+        if (idval == "") {
+          alert("아이디를 입력해주세요");
+          event.preventDefault();
+        } else if (!/\S+@\S+\.\S+/.test(idval)) {
+          alert("이메일형식이 아닙니다.");
+          event.preventDefault();
+        } else if (pwdval == "") {
+          alert("비밀번호를 입력해주세요");
+          event.preventDefault();
+        } else if (pwdval.length <= 6) {
+          alert("비밀번호가 6미만");
+          event.preventDefault();
+        } else if (!/[A-Z]/.test(pwdval)) {
+          alert("비밀번호에 대문자가없음");
+          event.preventDefault();
+        } else {
+          $("#frm").submit();
+        }
+      });
+
+      var count = 0;
+      var badge = $(".badge");
+      var body = $("body");
+      var nav = $("nav");
+
+      $(".badge").on("click", function () {
+        count++;
+        console.log(count);
+        if (count % 2 == 0) {
+          badge.removeClass("bg-light");
+          badge.addClass("bg-dark");
+          badge.css("color", "white");
+          body.addClass("dark");
+          nav.removeClass("navbar-light bg-light");
+          nav.addClass("navbar-dark bg-dark");
+          badge.text("Dark 🔄");
+        } else {
+          badge.removeClass("bg-dark");
+          badge.addClass("bg-light");
+          badge.css("color", "black");
+          body.removeClass("dark");
+          nav.removeClass("navbar-dark bg-dark");
+          nav.addClass("navbar-light bg-light");
+          badge.text("Light 🔄");
+        }
+      });
+
+      //setTimeOut()
+      var time = 5;
+      var timer = setInterval(t, 1000);
+
+      function t() {
+        if (time == 0) {
+          $(".alert").remove();
+          clearTimeout(timer);
+        }
+        $(".alert").text(time + "초 이내 구매시 사은품 증정!");
+        time--;
+      }
+
+      //캐러셀 (이미지슬라이더)
+      var length = $(".slide-btn-container").children().length - 3;
+      var limit = -length * 100;
+      var px = 0;
+    
+      $(".slide-prev").on("click", function () {
+        if (px < 0) {
+          px += 100;
+          $(".slide-container").css("transform", "translateX(" + px + "vw)");
+          
+        }
+      });
+      $(".slide-next").on("click", function () {
+        if (px != limit) {
+          px -= 100;
+          $(".slide-container").css("transform", "translateX(" + px + "vw)");
+         
+        }
+      });
+
+      $(".slide-1").on("click", function () {
+        $(".slide-container").css("transform", "translateX(0vw)");
+      });
+      $(".slide-2").on("click", function () {
+        $(".slide-container").css("transform", "translateX(-100vw)");
+      });
+      $(".slide-3").on("click", function () {
+        $(".slide-container").css("transform", "translateX(-200vw)");
+      });
+
+      //스크롤구현
+      //javascript
+      // window.addEventListener('scroll', function(){
+      //   console.log(window.scrollY);
+      // })
+      $(window).on('scroll',function(){
+        if($(window).scrollTop() > 100){
+          $('.navbar-brand').css('font-size','15px');
+        }else{
+          $('.navbar-brand').css('font-size','30px');
+        }
+      })
+      
+      $('.lorem').on('scroll',function(){
+        //div의 스크롤바 , 눈에보이는 div높이 == div의 실제높이
+        var scroll = document.querySelector('.lorem').scrollTop;
+        var scrollheight = document.querySelector('.lorem').scrollHeight;
+        var clientheight = document.querySelector('.lorem').clientHeight;
+        
+        console.log(scroll+ scrollheight, clientheight)
+        if(scroll + clientheight == scrollheight){
+          alert('끝까지다보셨습니다.');
+        }
+
+        
+      })
+       
+        
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
