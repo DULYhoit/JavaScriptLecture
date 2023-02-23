@@ -97,8 +97,11 @@
     </div>
     <div style="height: 1000px"></div>
     <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas voluptatum minus praesentium fugit debitis at, laborum ipsa itaque placeat sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur praesentium exercitationem.
-    </div> 
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas
+      voluptatum minus praesentium fugit debitis at, laborum ipsa itaque placeat
+      sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur
+      praesentium exercitationem.
+    </div>
 
     <script>
       //새로운선택자
@@ -204,19 +207,17 @@
       var length = $(".slide-btn-container").children().length - 3;
       var limit = -length * 100;
       var px = 0;
-    
+
       $(".slide-prev").on("click", function () {
         if (px < 0) {
           px += 100;
           $(".slide-container").css("transform", "translateX(" + px + "vw)");
-          
         }
       });
       $(".slide-next").on("click", function () {
         if (px != limit) {
           px -= 100;
           $(".slide-container").css("transform", "translateX(" + px + "vw)");
-         
         }
       });
 
@@ -235,29 +236,37 @@
       // window.addEventListener('scroll', function(){
       //   console.log(window.scrollY);
       // })
-      $(window).on('scroll',function(){
-        if($(window).scrollTop() > 100){
-          $('.navbar-brand').css('font-size','15px');
-        }else{
-          $('.navbar-brand').css('font-size','30px');
+      $(window).on("scroll", function () {
+        if ($(window).scrollTop() > 100) {
+          $(".navbar-brand").css("font-size", "15px");
+        } else {
+          $(".navbar-brand").css("font-size", "30px");
         }
-      })
-      
-      $('.lorem').on('scroll',function(){
-        //div의 스크롤바 , 눈에보이는 div높이 == div의 실제높이
-        var scroll = document.querySelector('.lorem').scrollTop;
-        var scrollheight = document.querySelector('.lorem').scrollHeight;
-        var clientheight = document.querySelector('.lorem').clientHeight;
-        
-        console.log(scroll+ scrollheight, clientheight)
-        if(scroll + clientheight == scrollheight){
-          alert('끝까지다보셨습니다.');
-        }
+      });
 
-        
-      })
-       
-        
+      $(".lorem").on("scroll", function () {
+        //div의 스크롤바 , 눈에보이는 div높이 == div의 실제높이
+        var scroll = document.querySelector(".lorem").scrollTop;
+        var scrollheight = document.querySelector(".lorem").scrollHeight;
+        var clientheight = document.querySelector(".lorem").clientHeight;
+
+        console.log(scroll + scrollheight, clientheight);
+        if (scroll + clientheight == scrollheight) {
+          alert("끝까지다보셨습니다.");
+        }
+      });
+      //로그인 모달창 까만배경을 누르면 닫기기능
+      //이벤트버블링: 이벤트가 상위html로 퍼지는 현상 event객체로 막을수있음 //
+      //1.event.target; 유저가 실제로 누른거
+      //2.event.currentTarget; 이벤트리스너 달린곳
+      //3.event.preventDefault(); 기본동작 막는거
+      //4.event.stopPropagation(); 이벤트 버블링을 막아줌
+
+      $(".black-bg").on("click", function (event) {
+        if ($(event.target).is($(".black-bg"))) {
+          $(".black-bg").removeClass("show-modal");
+        }
+      });
     </script>
 
     <script

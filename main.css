@@ -43,6 +43,8 @@
   opacity: 1;
 }
 .white-bg {
+  margin: auto;
+  width: 80vw;
   background: white;
   border-radius: 5px;
   padding: 30px;
