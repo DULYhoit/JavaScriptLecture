@@ -22,7 +22,7 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <div class="card-group container">
+    <!-- <div class="card-group container">
       <div class="card">
         <img src="https://via.placeholder.com/600" />
         <div class="card-body">
@@ -46,9 +46,25 @@
           <p>가격 : 70000</p>
           <button class="btn btn-danger">주문하기</button>
         </div>
+      </div>
+    </div> -->
+    <div class="container">
+      <div class="row">
+        <!-- <div class="col-sm-4">
+            <img src="https://via.placeholder.com/600" class="w-100">
+            <h5>Card title</h5>
+            <p>가격 : 70000</p>
+          </div> -->
       </div>
     </div>
-
+    <div class="container">
+      <button class="btn btn-danger">더보기</button>
+    </div>
+    <div class="container">
+      <button class="pricesort btn-danger">가격순정렬</button>
+      <button class="namesort btn-danger">이름순정렬</button>
+      <button class="itemfilter btn-danger">6만원이하상풍</button>
+    </div>
     
 
     <script>
@@ -58,15 +74,226 @@
         { id: 2, price: 60000, title: "Black Monastery" },
       ];
 
-      const title = $(".card-body").children("h5");
-      const price = $(".card-body").children("p");
-      console.log($(".card-body").children("h5"));
-      for (let i = 0; i < products.length; i++) {
-        title.eq(i).text(products[i].title);
-        price.eq(i).text('가격은 '+ products[i].price);
-        // title[i].innerText = products[i].title;
-        // price[i].innerText = "가격은 " + products[i].price;
+     
+      //6만원이하
+      $('.itemfilter').on('click', function(){
+        var fil = products.filter(function(data){
+          return data.price <= 60000
+        })
+      
+        $('.row').html('');
+        for (let i = 0; i < fil.length; i++) {
+        var col = document.createElement("div");
+        col.setAttribute("class", "col-sm-4");
+
+        var img = document.createElement("img");
+        img.setAttribute("src", "https://via.placeholder.com/600");
+        img.setAttribute("class", "w-100");
+
+        var h5 = document.createElement("h5");
+        h5.textContent = fil[i].title;
+
+        var p = document.createElement("p");
+        p.textContent = "가격:" + fil[i].price;
+
+        
+
+        col.appendChild(img);
+        col.appendChild(h5);
+        col.appendChild(p);
+        
+
+        node.append(col);
       }
+      })
+
+      $('.namesort').on('click', function(){
+        products.sort(function(a,b){
+          return a.price - b.price ;
+        })
+        $('.row').html('');
+        for (let i = 0; i < products.length; i++) {
+        var col = document.createElement("div");
+        col.setAttribute("class", "col-sm-4");
+
+        var img = document.createElement("img");
+        img.setAttribute("src", "https://via.placeholder.com/600");
+        img.setAttribute("class", "w-100");
+
+        var h5 = document.createElement("h5");
+        h5.textContent = products[i].title;
+
+        var p = document.createElement("p");
+        p.textContent = "가격:" + products[i].price;
+
+        col.appendChild(img);
+        col.appendChild(h5);
+        col.appendChild(p);
+
+        node.append(col);
+      }
+      })
+      //이름정렬
+      $('.pricesort').on('click', function(){
+        products.sort(function(a,b){
+          return a.title - b.title ;
+        })
+        products.reverse();
+        $('.row').html('');
+        for (let i = 0; i < products.length; i++) {
+        var col = document.createElement("div");
+        col.setAttribute("class", "col-sm-4");
+
+        var img = document.createElement("img");
+        img.setAttribute("src", "https://via.placeholder.com/600");
+        img.setAttribute("class", "w-100");
+
+        var h5 = document.createElement("h5");
+        h5.textContent = products[i].title;
+
+        var p = document.createElement("p");
+        p.textContent = "가격:" + products[i].price;
+
+        col.appendChild(img);
+        col.appendChild(h5);
+        col.appendChild(p);
+
+        node.append(col);
+      }
+      })
+     
+ 
+      let node = $(".row");
+
+      for (let i = 0; i < products.length; i++) {
+        var col = document.createElement("div");
+        col.setAttribute("class", "col-sm-4");
+
+        var img = document.createElement("img");
+        img.setAttribute("src", "https://via.placeholder.com/600");
+        img.setAttribute("class", "w-100");
+
+        var h5 = document.createElement("h5");
+        h5.textContent = products[i].title;
+
+        var p = document.createElement("p");
+        p.textContent = "가격:" + products[i].price;
+
+        var btn = document.createElement('button');
+        btn.textContent = '구매';
+        btn.setAttribute('class','buybtn')
+
+        col.appendChild(img);
+        col.appendChild(h5);
+        col.appendChild(p);
+        col.appendChild(btn);
+
+        node.append(col);
+      }
+      //https://codingapple1.github.io/js/more2.json
+      let count = 1;
+      $(".btn").on("click", function () {
+        $.get("https://codingapple1.github.io/js/more" + count + ".json")
+          .done(function (data) {
+            count++;
+            if (count == 2) {
+              $(".btn").css("display", "none");
+            }
+            for (let i = 0; i < data.length; i++) {
+              var col = document.createElement("div");
+              col.setAttribute("class", "col-sm-4");
+
+              var img = document.createElement("img");
+              img.setAttribute("src", "https://via.placeholder.com/600");
+              img.setAttribute("class", "w-100");
+
+              var h5 = document.createElement("h5");
+              h5.textContent = data[i].title;
+
+              var p = document.createElement("p");
+              p.textContent = "가격:" + data[i].price;
+
+              col.appendChild(img);
+              col.appendChild(h5);
+              col.appendChild(p);
+
+              node.append(col);
+            }
+          })
+          .fail(function () {
+            console.log("실패");
+          });
+      });
+
+      // const title = $(".card-body").children("h5");
+      // const price = $(".card-body").children("p");
+      // console.log($(".card-body").children("h5"));
+      // for (let i = 0; i < products.length; i++) {
+      //   title.eq(i).text(products[i].title);
+      //   price.eq(i).text('가격은 '+ products[i].price);
+      //   // title[i].innerText = products[i].title;
+      //   // price[i].innerText = "가격은 " + products[i].price;
+      // }
+
+      //ajax
+      $.get("https://codingapple1.github.io/price.json")
+        .done(function (data) {
+          console.log(data.price);
+        })
+        .fail(function () {
+          console.log("실패");
+        });
+      //javascript 통신을 할경우 가져온 값을 오브젝트형태로 바꿔줘야한다.
+      fetch("https://codingapple1.github.io/price.json")
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data.price);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+        
+        //localStorage,SessionStorage
+        //localStorage : 사이트 재접속해도 유지
+        //SessionStorage : 사이트 나가면 없어짐
+        //배열을 넣고싶으면 JSON.stringify(); 로 변환후 집어넣기
+        //배열을 빼고싶으면 JSON.parse(); 로변환
+        // localStorage.setItem('이름', 'kim');
+        // localStorage.getItem('이름');
+        // localStorage.removeItem('이름');
+
+        //장바구니
+        //
+        $('.buybtn').on('click',function(e){
+          let title = $(e.target).siblings('h5').text();
+          let price = $(e.target).siblings('p').text();
+        
+
+          if(localStorage.getItem('cart') != null){
+            var get = JSON.parse(localStorage.cart);
+            get.push(title);
+            localStorage.setItem('cart',JSON.stringify(get))
+            console.log(get);
+          }else{
+            
+            localStorage.setItem('cart',JSON.stringify([title]))
+          }
+
+
+          
+          
+         
+         
+          
+         
+
+          
+
+          
+          
+          
+          
+        })
     </script>
 
     <script

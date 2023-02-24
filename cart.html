@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script
+    src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+    crossorigin="anonymous"
+  ></script>
+    <title>Document</title>
+</head>
+<body>
+    <div>장바구니페이지</div>
+    <div class="shop">
+        
+
+    </div>
+    
+    
+    <script>
+        var list = JSON.parse(localStorage.getItem('cart'));
+        console.log(list);
+        for (let i = 0; i < list.length; i++) {
+            var shopNode = $('.shop');
+            var val = document.createElement('p');
+            val.textContent = list[i];
+             shopNode.append(val);
+            
+        }
+    </script>
+</body>
+</html>

@@ -78,7 +78,7 @@
     <div style="overflow: hidden">
       <div class="slide-container">
         <div class="slide-box">
-          <img src="img/car1.png" />
+          <img src="img/car1.png" draggable="false"/>
         </div>
         <div class="slide-box">
           <img src="img/car2.png" />
@@ -267,6 +267,22 @@
           $(".black-bg").removeClass("show-modal");
         }
       });
+
+      //캐러셀 스와이프기능
+      //1.mousedown
+      //2.mouseup
+      //3.mousemove
+      var start = 0;
+      $('.slide-box').eq(0).on('mousedown',function(e){
+        start = e.clientX;
+        
+      });
+      $('.slide-box').eq(0).on('mousemove',function(e){
+       start - e.clientX;
+        console.log(start - e.clientX);
+      });
+        
+        
     </script>
 
     <script

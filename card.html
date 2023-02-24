@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="card.css" />
+    <!-- jquery 사용 -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    
+    <div class="card-background">
+        <div class="card-box">
+            <img src="img/card1.png" alt="">
+        </div>
+        <div class="card-box">
+            <img src="img/card2.png" alt="">
+        </div>
+        <div class="card-box">
+            <img src="img/card3.png" alt="">
+        </div>
+    </div>
+    <script>
+     $(window).on('scroll',function(){
+        var 높이 = $(window).scrollTop();
+        console.log(높이);
+        let y = (-1/300) * 높이 + 3 ;
+        let z = (-1/3000) * 높이 + (6/5);
+        //600~ 900 까지 서서히
+        //1차함수 : y = a * 높이 + b
+        //높이가 600일때 y는 1
+        //a = -1/300
+        //b = 3
+        $('.card-box').eq(0).css('opacity', y);
+        $('.card-box').eq(0).css('transform', 'scale('+z+')')
+       
+        
+     })
+    </script>
+    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

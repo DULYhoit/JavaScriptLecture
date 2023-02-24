@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="grid.css" />
+    <!-- jquery 사용 -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Hello, world!</title>
+  </head>
+  <body style="background: grey; height: 3000px">
+    <div class="grey">
+      <div class="image">
+        <img src="img/appletv.jpg" width="100%" />
+      </div>
+      <div style="clear: both"></div>
+      <div class="text">
+        sadfkasdfsadfsa asdfnlaskdn fkasndf sadklfn aslkdnf lkasdnfkl sadklf
+        nasdlkfn klasdnf lkasdlkf nsalkdn flksadnlfk naslkd fnlksadf l
+        sadlkfnaslkdfn
+      </div>
+      <div style="clear: both"></div>
+      <div class="text" style="margin-top: 300px">
+        sadfkasdfsadfsa asdfnlaskdn fkasndf sadklfn aslkdnf lkasdnfkl sadklf
+        nasdlkfn klasdnf lkasdlkf nsalkdn flksadnlfk naslkd fnlksadf l
+        sadlkfnaslkdfn
+      </div>
+      <div style="clear: both"></div>
+      <div class="text" style="margin-top: 300px">
+        sadfkasdfsadfsa asdfnlaskdn fkasndf sadklfn aslkdnf lkasdnfkl sadklf
+        nasdlkfn klasdnf lkasdlkf nsalkdn flksadnlfk naslkd fnlksadf l
+        sadlkfnaslkdfn
+      </div>
+    </div>
+    <script>
+      $(window).on("scroll", function (e) {
+        console.log(scrollY);
+        
+    
+        if (scrollY > 400) {
+          $(".image").css("width", "600px");
+         
+          if(screenY < 600){
+            $(".image").children().attr("src", "img/appletv.jpg");
+           
+          }
+          if (scrollY > 900) {
+            $(".image").children().attr("src", "img/car1.png");
+          }
+          if(scrollY > 1200){
+            $(".image").children().attr("src", "img/car2.png");
+          }
+        } else {
+          $(".image").css("width", "400px");
+        }
+      });
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
