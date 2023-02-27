@@ -57,7 +57,7 @@
   width: 300vw;
   /* 성능상으로 transform이 좋음 */
   /* transform: translateX(-200vw); */
-  transition: all 1s;
+  
 }
 .slide-box {
   width: 100vw;

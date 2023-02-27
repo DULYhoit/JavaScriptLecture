@@ -78,13 +78,13 @@
     <div style="overflow: hidden">
       <div class="slide-container">
         <div class="slide-box">
-          <img src="img/car1.png" draggable="false"/>
+          <img src="img/car1.png" draggable="false" />
         </div>
         <div class="slide-box">
-          <img src="img/car2.png" />
+          <img src="img/car2.png" draggable="false" />
         </div>
         <div class="slide-box">
-          <img src="img/car3.png" />
+          <img src="img/car3.png" draggable="false" />
         </div>
       </div>
     </div>
@@ -272,17 +272,140 @@
       //1.mousedown
       //2.mouseup
       //3.mousemove
+      //4.마우스클릭후 드래그한 위치까지의 픽셀 만큼 사진을 왼쪽으로이동 시켜야함.
+      //5. 두번째 사진일경우 시작위치가 달라져야함 ex) 두번째사진이면 시작위치가 첫번째사진의 2배
       var start = 0;
-      $('.slide-box').eq(0).on('mousedown',function(e){
-        start = e.clientX;
-        
-      });
-      $('.slide-box').eq(0).on('mousemove',function(e){
-       start - e.clientX;
-        console.log(start - e.clientX);
-      });
-        
-        
+      var down = false;
+      var translate = 0;
+      var index = 0;
+   //1
+        $(".slide-box")
+          .eq(0)
+          .on("mousedown", function (e) {
+            index = 0;
+            start = e.clientX;
+            
+            down = true;
+          });
+        $(".slide-box")
+          .eq(0)
+          .on("mousemove", function (e) {
+            console.log('1');
+            if (down == true) {
+              
+              if(e.clientX - start <0){
+
+                $(".slide-container").css(
+                  "transform",
+                  "translateX(" + (e.clientX- start)+ "px)"
+                );
+              }
+            }
+          });
+        $(".slide-box")
+          .eq(0)
+          .on("mouseup", function (e) {
+            down = false;
+
+            if (e.clientX - start < -100) {
+            
+              $(".slide-container")
+                .css("transition", "all 0.5s")
+                .css("transform", "translateX(-100vw)");
+            }
+            setTimeout(() => {
+              $(".slide-container").css("transition", "none");
+            }, 500);
+          });
+
+          //2
+          $(".slide-box")
+          .eq(1)
+          .on("mousedown", function (e) {
+            index = 1;
+            start = e.clientX;
+            
+            down = true;
+          });
+        $(".slide-box")
+          .eq(1)
+          .on("mousemove", function (e) {
+            console.log('2');
+            if (down == true ) {
+           
+              $(".slide-container").css(
+                "transform",
+                `translateX(calc(${e.clientX - start}px - 100vw))`
+              );
+            }
+          });
+        $(".slide-box")
+          .eq(1)
+          .on("mouseup", function (e) {
+            down = false;
+
+            if (e.clientX - start < -100) {
+            
+              $(".slide-container")
+                .css("transition", "all 0.5s")
+                .css("transform", "translateX(-200vw)");
+            } else if(e.clientX-start !=0){
+              
+             
+                $(".slide-container")
+                  .css("transition", "all 0.5s")
+                  .css("transform", "translateX(0vw)");
+
+              
+            }
+            setTimeout(() => {
+              $(".slide-container").css("transition", "none");
+            }, 500);
+          });
+          //3
+          $(".slide-box")
+          .eq(2)
+          .on("mousedown", function (e) {
+            index = 2 ;
+            start = e.clientX;
+            
+            down = true;
+          });
+        $(".slide-box")
+          .eq(2)
+          .on("mousemove", function (e) {
+            if (down == true) {
+             
+              $(".slide-container").css(
+                "transform",
+                `translateX(calc(${e.clientX-start}px - 200vw))`
+              );
+            }
+          });
+        $(".slide-box")
+          .eq(2)
+          .on("mouseup", function (e) {
+            down = false;
+
+            if (e.clientX - start < -100) {
+            
+              $(".slide-container")
+                .css("transition", "all 0.5s")
+                .css("transform", "translateX(-300vw)");
+            } else if(e.clientX-start !=0){
+              
+             console.log('3');
+                $(".slide-container")
+                  .css("transition", "all 0.5s")
+                  .css("transform", "translateX(-100vw)");
+
+              
+            }
+            setTimeout(() => {
+              $(".slide-container").css("transition", "none");
+            }, 500);
+          });
+      
     </script>
 
     <script
